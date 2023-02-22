@@ -1,12 +1,8 @@
 import connection from "../config/database.js";
-import bcrypt from 'bcrypt';
 
 export async function postRegister(req, res) {
-    const { name, email, password, confirmPassword } = req.body;
+    const { name, email, cryptoPassword } = res.locals.register;
     try {
-        const salt = await bcrypt.genSalt(10);
-        const cryptoPassword = await bcrypt.hash(password, salt);
-
         await connection.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3)', [name, email, cryptoPassword])
         res.status(201).send();
 
