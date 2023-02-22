@@ -1,4 +1,4 @@
-import connection from "../config/database";
+import connection from "../config/database.js";
 
 
 export async function validateHeader (req, res, next) {

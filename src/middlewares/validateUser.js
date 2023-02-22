@@ -29,8 +29,6 @@ export async function validateRegister(req, res, next) {
     }
 }
 
-
-
 export async function validateLogIn(req, res, next) {
     const { email, password } = req.body;
     try {
