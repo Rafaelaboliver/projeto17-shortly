@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import connection from "../config/database.js";
 
-export async function UrlShorten(req, res, next) {
+export async function shortingUrl(req, res, next) {
   const { url } = req.body;
   const { session } = res.locals;
   try {
@@ -19,7 +19,7 @@ export async function UrlShorten(req, res, next) {
   }
 }
 
-export async function urlId(req, res, next) {
+export async function urlIdVerification(req, res, next) {
   const { id } = req.params;
 
   try {
@@ -34,7 +34,7 @@ export async function urlId(req, res, next) {
   }
 }
 
-export async function redirectUrl (req, res, next) {
+export async function shortedUrlVerification (req, res, next) {
   const {shortUrl} = req.params;
 
   try {

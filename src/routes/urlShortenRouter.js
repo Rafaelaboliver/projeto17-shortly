@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { getRedirectUrl, getShortenUrl, postUrlShorten } from "../controllers/urlShortenController.js";
-import { validateHeader } from "../middlewares/validateHeader.js";
+import { getRedirectUrl, getShortedUrl, postUrlShorted } from "../controllers/urlShortenController.js";
+import { headerAuthorization } from "../middlewares/tokenMiddleware.js";
 import { validateSchema } from "../middlewares/validateSchema.js";
-import { redirectUrl, urlId, UrlShorten } from "../middlewares/validateUrlShorten.js";
-import { urlShorten } from "../schemas/urlShortenSchema.js";
+import { shortedUrlVerification, shortingUrl, urlIdVerification } from "../middlewares/urlShortenMiddleware.js";
+import { urlGiven } from "../schemas/urlGivenSchema.js";
 
 const urlShortenRouter = Router();
 
-urlShortenRouter.post('/urls/shorten', validateHeader, validateSchema(urlShorten), UrlShorten, postUrlShorten);
-urlShortenRouter.get('/urls/:id', urlId, getShortenUrl);
-urlShortenRouter.get('/urls/open/:shortUrl', redirectUrl, getRedirectUrl)
+urlShortenRouter.post('/urls/shorten', headerAuthorization, validateSchema(urlGiven), shortingUrl, postUrlShorted);
+urlShortenRouter.get('/urls/:id', urlIdVerification, getShortedUrl);
+urlShortenRouter.get('/urls/open/:shortUrl', shortedUrlVerification, getRedirectUrl);
 
 export default urlShortenRouter;
 

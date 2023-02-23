@@ -1,7 +1,7 @@
 import connection from "../config/database.js";
 
 
-export async function validateHeader (req, res, next) {
+export async function headerAuthorization (req, res, next) {
   const { authorization } = req.headers;
   const token = authorization?.replace("Bearer ", "");
 

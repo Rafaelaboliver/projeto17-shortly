@@ -1,14 +1,13 @@
 import { Router } from "express";
 import { postLogIn, postRegister} from "../controllers/usersController.js";
-import { validateLogIn, validateRegister } from "../middlewares/validateUser.js";
+import { logInVerifications, registerVerifications } from "../middlewares/userMiddleware.js";
 import { validateSchema } from "../middlewares/validateSchema.js";
-import { logInSchema, registerSchema } from "../schemas/userSchema.js";
+import { logIn, register } from "../schemas/userSchema.js";
 
 
 const usersRouter = Router();
 
-//(route: GET/customers)
-usersRouter.post('/signup', validateSchema(registerSchema), validateRegister, postRegister);
-usersRouter.post('/signin', validateSchema(logInSchema), validateLogIn, postLogIn)
+usersRouter.post('/signup', validateSchema(register), registerVerifications, postRegister);
+usersRouter.post('/signin', validateSchema(logIn), logInVerifications, postLogIn)
 
 export default usersRouter;

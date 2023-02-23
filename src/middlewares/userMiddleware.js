@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import { v4 as uuidV4 } from "uuid";
 
 
-export async function validateRegister(req, res, next) {
+export async function registerVerifications(req, res, next) {
     const { name, email, password } = req.body;
 
     try {
@@ -29,7 +29,7 @@ export async function validateRegister(req, res, next) {
     }
 }
 
-export async function validateLogIn(req, res, next) {
+export async function logInVerifications(req, res, next) {
     const { email, password } = req.body;
     try {
         const register = await connection.query('SELECT * FROM users WHERE email = $1', [email]);

@@ -1,5 +1,5 @@
 import joi from "joi";
 
-export const urlShorten = joi.object({
+export const urlGiven = joi.object({
     url: joi.string().uri().empty().min(10).required(),
 })

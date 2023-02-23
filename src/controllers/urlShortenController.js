@@ -1,6 +1,6 @@
 import connection from "../config/database.js";
 
-export async function postUrlShorten(req, res) {
+export async function postUrlShorted(req, res) {
   const { userId, url, shortUrl } = res.locals.url;
   try {
     await connection.query('INSERT INTO urls ("userId", url, "shortUrl") VALUES ( $1, $2, $3);', [userId, url, shortUrl]);
@@ -13,7 +13,7 @@ export async function postUrlShorten(req, res) {
   }
 }
 
-export async function getShortenUrl(req, res) {
+export async function getShortedUrl(req, res) {
   const { url } = res.locals;
   try {
     res.status(200).send(url);
