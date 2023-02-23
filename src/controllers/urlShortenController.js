@@ -41,3 +41,9 @@ export async function deleteUrlShorted(req, res) {
     return res.status(500).send("server error: " + error);
   }
 }
+
+export async function getUrlsRanking (req, res) {
+  const { ranking } = res.locals;
+
+  res.status(200).send(ranking);
+}
