@@ -58,7 +58,25 @@ export async function logInVerifications(req, res, next) {
     }
 }
 
-export async function userShortedUrlsVerifications (req, res, next) {
-    
+export async function userShortedUrlsVerifications(req, res, next) {
+const { userId } = res.locals.session;
+
+
+    try {
+        const data = await connection.query(`SELECT users.id, users.name, SUM(urls."visitCount") AS "visitCount", 
+        json_agg(json_build_object('id', urls.id, 'shortUrl', urls."shortUrl", 'url', urls.url, 'visitCount', urls."visitCount")) AS "shortenedUrls"
+        FROM users
+        JOIN urls ON users.id = urls."userId"
+        WHERE users.id = $1
+        GROUP BY users.id`, [userId]);
+
+        const user = data.rows[0];
+
+        if (data.rows.length === 0) return res.status(404).send('No url found');
+        res.locals.user = user;
+        next();
+    } catch (error) {
+        return res.status(500).send("server error: " + error);
+    }
 }
 

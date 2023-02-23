@@ -23,5 +23,11 @@ export async function postLogIn(req, res) {
 }
 
 export async function getUserShortedUrls (req, res) {
-    
+ const { user } = res.locals;
+
+ try {
+    res.status(200).send(user);
+ } catch (error) {
+    return res.status(500).send("server error: " + error);
+ }
 }
