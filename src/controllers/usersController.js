@@ -22,3 +22,6 @@ export async function postLogIn(req, res) {
     }
 }
 
+export async function getUserShortedUrls (req, res) {
+    
+}

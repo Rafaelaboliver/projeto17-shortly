@@ -58,3 +58,7 @@ export async function logInVerifications(req, res, next) {
     }
 }
 
+export async function userShortedUrlsVerifications (req, res, next) {
+    
+}
+

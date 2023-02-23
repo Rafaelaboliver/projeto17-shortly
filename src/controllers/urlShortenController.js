@@ -30,3 +30,14 @@ export async function getRedirectUrl(req, res) {
     return res.status(500).send("server error: " + error);
   }
 }
+
+export async function deleteUrlShorted(req, res) {
+  const { url } = res.locals.url;
+
+  try {
+    await connection.query('DELETE FROM urls WHERE url = $1;', [url]);
+    res.status(204).send();
+  } catch (error) {
+    return res.status(500).send("server error: " + error);
+  }
+}
