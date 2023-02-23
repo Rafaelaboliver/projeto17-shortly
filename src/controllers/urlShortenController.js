@@ -21,3 +21,12 @@ export async function getShortenUrl(req, res) {
     return res.status(500).send("server error: " + error);
   }
 }
+
+export async function getRedirectUrl(req, res) {
+  const { url } = res.locals;
+  try {
+    res.redirect(url);
+  } catch (error) {
+    return res.status(500).send("server error: " + error);
+  }
+}
