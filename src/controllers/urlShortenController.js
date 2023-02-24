@@ -45,5 +45,5 @@ export async function deleteUrlShorted(req, res) {
 export async function getUrlsRanking (req, res) {
   const { ranking } = res.locals;
 
-  res.status(200).send(ranking);
+  res.status(200).send(ranking); 
 }

@@ -59,7 +59,6 @@ export async function shortedUrlUserVerification(req, res, next) {
 
   try {
     const urlUser = await connection.query('SELECT * FROM urls WHERE id = $1;', [id]);
-    console.log('entrei no if');
 
     if (urlUser.rows.length === 0) return res.status(404).send();
     if (urlUser.rows[0].userId !== userId) return res.status(401).send();
