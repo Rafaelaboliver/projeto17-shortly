@@ -55,7 +55,8 @@ ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
 
 CREATE TABLE public.teste (
     id integer NOT NULL,
-    name character varying(50)
+    name character varying(50),
+    "createdAt" timestamp without time zone DEFAULT (CURRENT_TIMESTAMP) NOT NULL
 );
 
 
