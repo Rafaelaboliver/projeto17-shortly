@@ -25,7 +25,7 @@ CREATE TABLE public.sessions (
     id integer NOT NULL,
     "userId" integer,
     token text NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT timezone('America/Sao_Paulo'::text, CURRENT_TIMESTAMP) NOT NULL
+    "createdAt" timestamp without time zone DEFAULT (CURRENT_TIMESTAMP) NOT NULL
 );
 
 
@@ -89,7 +89,7 @@ CREATE TABLE public.urls (
     url text NOT NULL,
     "shortUrl" character varying(10) NOT NULL,
     "visitCount" bigint DEFAULT 0 NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT timezone('America/Sao_Paulo'::text, CURRENT_TIMESTAMP) NOT NULL
+    "createdAt" timestamp without time zone DEFAULT (CURRENT_TIMESTAMP) NOT NULL
 );
 
 
@@ -122,7 +122,7 @@ CREATE TABLE public.users (
     name character varying(100) NOT NULL,
     email character varying(50) NOT NULL,
     password text NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT timezone('America/Sao_Paulo'::text, (CURRENT_DATE)::timestamp with time zone) NOT NULL
+    "createdAt" timestamp without time zone DEFAULT (CURRENT_TIMESTAMP) NOT NULL
 );
 
 
